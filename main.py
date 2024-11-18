@@ -10,7 +10,7 @@ def preprocess_data(file_path):
     # Lectura del dataset
     df = pd.read_csv(file_path)
 
-    # Crear una copia explícita del DataFrame
+    # Crear una copia explícita del DataFrame para no alterar el original
     df = df.copy()
 
     # Tratamiento de valores faltantes o nulos
@@ -158,8 +158,17 @@ def main():
     print("\nTipo de dato por columna")
     print(df.dtypes)
 
-    print("\nResumen estadístico")
-    print(df.describe())
+    print("\nResumen estadístico por columna:")
+    for column in df.columns:
+        print(f"\n--- Descripción de {column} ---")
+        if df[column].dtype in ['int64', 'float64']:
+            # Para columnas numéricas, usar describe() completo
+            print(df[column].describe())
+        else:
+            # Para columnas categóricas, mostrar frecuencia de valores
+            print(df[column].value_counts())
+            print("\nFrecuencia porcentual:")
+            print(df[column].value_counts(normalize=True) * 100)
 
     # Crear visualizaciones
     figs = crear_visualizaciones(df)
