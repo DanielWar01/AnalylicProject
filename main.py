@@ -19,12 +19,17 @@ def preprocess_data(file_path):
     # Crear una copia explícita del DataFrame para no alterar el original
     df = df.copy()
 
+    ###PROCESO DE LIMPIEZA###
     # Tratamiento de valores faltantes o nulos
     for column in df.columns:
         if df[column].dtype == 'object':  # Columna categórica
             df[column] = df[column].fillna(df[column].mode()[0])
         else:  # Columna numérica
             df[column] = df[column].fillna(df[column].mean())
+
+
+    # Tratamiento de valores anomalos
+    df.loc[df['Exam_Score']> 100, 'Exam_Score'] = 100
 
     return df
 
