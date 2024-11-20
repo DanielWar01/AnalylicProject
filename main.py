@@ -10,6 +10,11 @@ def preprocess_data(file_path):
     # Lectura del dataset
     df = pd.read_csv(file_path)
 
+    # Numero de valores faltantes o anomalas
+    missing_values = df.isna().sum()
+    print("\nValores faltantes por columna:")
+    print(missing_values)
+
     # Crear una copia explícita del DataFrame para no alterar el original
     df = df.copy()
 
@@ -169,6 +174,8 @@ def main():
             print(df[column].value_counts())
             print("\nFrecuencia porcentual:")
             print(df[column].value_counts(normalize=True) * 100)
+
+
 
     # Crear visualizaciones
     figs = crear_visualizaciones(df)
