@@ -31,6 +31,14 @@ def preprocess_data(file_path):
     # Tratamiento de valores anomalos
     df.loc[df['Exam_Score']> 100, 'Exam_Score'] = 100
 
+    # Escalamiento de valores numeros de horas de estudio, horas de sueño y actividad física para pasarla por semana
+    # Convertir Sleep_Hours de día a semana
+    df['Sleep_Hours'] = df['Sleep_Hours'] * 7
+    # Convertir Tutoring_Sessions de mes a semana
+    df['Tutoring_Sessions'] = df['Tutoring_Sessions'] / 4.29
+    # Convertir Hours_Studied de mes a semana
+    df['Hours_Studied'] = df['Hours_Studied'] / 4.29
+
     return df
 
 
