@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from pandasgui import show
 
 
 def preprocess_data(file_path):
@@ -24,9 +25,6 @@ def preprocess_data(file_path):
             df[column] = df[column].fillna(df[column].mode()[0])
         else:  # Columna numérica
             df[column] = df[column].fillna(df[column].mean())
-
-    # Eliminación de valores duplicados
-    df = df.drop_duplicates()
 
     return df
 
@@ -153,8 +151,18 @@ def crear_visualizaciones(df):
 
 
 def main():
+
     # Cargar y preprocesar datos
     df = preprocess_data('./StudentPerformanceFactors.csv')
+
+    # Mostrar las primeras filas del DataFrame
+    print("\nPrimeras 5 filas del DataFrame:")
+    print(df.head())
+
+    # Mostrar las últimas 5 filas del DataFrame
+    print("\nÚltimas 5 filas del DataFrame:")
+    print(df.tail())
+
 
     # Mostrar información del DataFrame
     print("\nInformación general del DataFrame")
@@ -184,6 +192,8 @@ def main():
     for i, fig in enumerate(figs):
         fig.savefig(f'visualization_{i}.png')
         plt.close(fig)
+    # Mostrar el dataset
+    show(df)
 
 
 if __name__ == "__main__":
