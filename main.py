@@ -196,7 +196,8 @@ def main():
             print("\nFrecuencia porcentual:")
             print(df[column].value_counts(normalize=True) * 100)
 
-
+    #Exportar dataframe a un archivo csv para el comienzo del modelo
+    df.to_csv('StudentPerformanceFactorsClean.csv', index=False)
 
     # Crear visualizaciones
     figs = crear_visualizaciones(df)
