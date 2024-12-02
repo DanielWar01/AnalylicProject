@@ -42,9 +42,11 @@ print('Intercepción: ', modelo.intercept_)
 print(f'Ecuación del plano: {round(modelo.coef_[0], 3)} * Horas de estudio + {round(modelo.coef_[1], 3)} * Atención + {round(modelo.intercept_, 3)}')
 print(f'Coeficiente de determinación: {round(r2_score(df[variable_y], modelo.predict(df[variables_x])), 3)}')
 
-#Uso del modelo de regresión generado lineal generada
+# Predecir un puntaje de examen para 6 horas de estudio y 85% de asistencia
+nuevo_dato = [[6, 85]]
+prediccion = modelo.predict(nuevo_dato)
+print(f"La predicción para 6 horas de estudio y un 85% de atención es: {prediccion[0]:.2f}")
 
-print("Puntaje examen: ",round(modelo.coef_[0] * 5 + modelo.coef_[1] * 67 + modelo.intercept_, 3))
 
 #******************* Gráfica en 3D ***********************
 
@@ -70,3 +72,4 @@ ax.set_xlabel(x_1)
 ax.set_ylabel(x_2)
 ax.set_zlabel("Exam_score")
 plt.show()
+
