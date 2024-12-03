@@ -39,13 +39,17 @@ print('Intercepción: ', modelo.intercept_)
 
 #************ Imprimir la ecuación del plano ************
 
-print(f'Ecuación del plano: {round(modelo.coef_[0], 3)} * Horas de estudio + {round(modelo.coef_[1], 3)} * Atención + {round(modelo.intercept_, 3)}')
-print(f'Coeficiente de determinación: {round(r2_score(df[variable_y], modelo.predict(df[variables_x])), 3)}')
+print(f'Ecuación del plano: Puntaje del examen = '
+      f'{round(modelo.coef_[0], 3)} * Horas de estudio + '
+      f'{round(modelo.coef_[1], 3)} * Asistencia + '
+      f'{round(modelo.intercept_, 3)}')
+print(f'Coeficiente de determinación: '
+      f'{round(r2_score(df[variable_y], modelo.predict(df[variables_x])), 3)}')
 
 # Predecir un puntaje de examen para 6 horas de estudio y 85% de asistencia
-nuevo_dato = [[6, 85]]
+nuevo_dato = [[5.594405594405594, 98]]
 prediccion = modelo.predict(nuevo_dato)
-print(f"La predicción para 6 horas de estudio y un 85% de atención es: {prediccion[0]:.2f}")
+print(f"La predicción para {nuevo_dato[0][0]} horas de estudio y un {nuevo_dato[0][1]}% de asistencia. \nPredicción: {prediccion[0]:.2f}\nValor real: 74")
 
 
 #******************* Gráfica en 3D ***********************
@@ -72,4 +76,3 @@ ax.set_xlabel(x_1)
 ax.set_ylabel(x_2)
 ax.set_zlabel("Exam_score")
 plt.show()
-
