@@ -39,4 +39,4 @@ print("\nReporte de clasificación:\n", classification_report(y_test, y_pred))
 # Importancia de las variables
 importances = model.feature_importances_
 feature_importance = pd.DataFrame({'Variable': X.columns, 'Importancia': importances})
-print(feature_importance.sort_values(by='Importance', ascending=False))
+print(feature_importance.sort_values(by='Importancia', ascending=False))
